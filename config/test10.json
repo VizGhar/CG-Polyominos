@@ -1,0 +1,9 @@
+{
+  "title": {
+    "1": "Ostrich",
+    "2": "Ostrich"
+  },
+  "testIn": "16 12\n.........OO.\n........OOO.\n........OOOO\n........O...\n..OOOO.OO...\nOOOOOOOOO...\n.OOOOOOOO...\n.OOOOOOO....\n..OOOOO.....\n...OO.......\n....O.......\n....O.......\n....O.......\n....O.......\n....O.......\n....OO......\nFLBHMDIECGAK",
+  "isTest": "false",
+  "isValidator": "true"
+}

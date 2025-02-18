@@ -1,0 +1,9 @@
+{
+  "title": {
+    "1": "Butterfly",
+    "2": "Butterfly"
+  },
+  "testIn": "9 9\nOO.....OO\nOOO...OOO\nOOO.O.OOO\nOOOOOOOOO\n.OOOOOOO.\nOOOOOOOOO\nOOO.O.OOO\nOOO...OOO\nOO.....OO\nACNGIBHKEFMDL",
+  "isTest": "true",
+  "isValidator": "false"
+}

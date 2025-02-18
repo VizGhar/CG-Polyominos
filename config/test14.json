@@ -1,0 +1,9 @@
+{
+  "title": {
+    "1": "Full Brick",
+    "2": "Full Brick"
+  },
+  "testIn": "4 16\nOOOOOOOOOOOOOOOO\nOOOOOOOOOOOOOOOO\nOOOOOOOOOOOOOOOO\nOOOOOOOOOOOOOOOO\nLEFMCIHJKNABGD",
+  "isTest": "false",
+  "isValidator": "true"
+}

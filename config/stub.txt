@@ -1,0 +1,17 @@
+read remaining:string(15)
+read current:string(1)
+read h:int w:int
+loop h read line:string(w)
+write OO;.O;.O
+write 0 1
+
+STATEMENT
+Get 3 cells in a row!
+
+INPUT
+remaining: ID's of remaining tiles
+current: ID of current tile to place on board
+
+OUTPUT
+<tile shape>
+<row> <column>

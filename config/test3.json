@@ -1,0 +1,9 @@
+{
+  "title": {
+    "1": "First Aid Kit",
+    "2": "First Aid Kit"
+  },
+  "testIn": "6 5\n..O..\nOOOOO\nO.O.O\nOOOOO\nO.O.O\nOOOOO\nHCJLA",
+  "isTest": "true",
+  "isValidator": "false"
+}

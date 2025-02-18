@@ -1,0 +1,9 @@
+{
+  "title": {
+    "1": "Sample variant",
+    "2": "Sample variant"
+  },
+  "testIn": "3 3\nOOO\n.OO\nOOO\nAD",
+  "isTest": "false",
+  "isValidator": "true"
+}

@@ -1,0 +1,9 @@
+{
+  "title": {
+    "1": "Umbrella",
+    "2": "Umbrella"
+  },
+  "testIn": "5 9\n...OOO...\n..O.O.O..\n.OO.O.OO.\nOOOOOOOOO\n....O....\nGFAEH",
+  "isTest": "false",
+  "isValidator": "true"
+}

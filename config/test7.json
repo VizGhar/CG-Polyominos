@@ -1,0 +1,9 @@
+{
+  "title": {
+    "1": "Glass",
+    "2": "Glass"
+  },
+  "testIn": "11 7\nOOOOOOO\nOOOOOOO\nOOOOOOO\nOOOOOOO\n.OOOOO.\n..OOO..\n...O...\n...O...\n...O...\n...O...\n..OOO..\nELJMANGIF",
+  "isTest": "true",
+  "isValidator": "false"
+}

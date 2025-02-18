@@ -7,47 +7,25 @@
       <span>The Goal</span>
     </h1>
     <div class="statement-goal-content">
-      The aim of this game is to win.
-      <br>
-      <br>
-      For this question, you will be asked to output a single line as a solution.
+      Place all polyominos to form predefined 2D shape
     </div>
   </div>
-  <!-- RULES -->
+
   <div class="statement-section statement-rules">
     <h1>
       <span class="icon icon-rules">&nbsp;</span>
       <span>Rules</span>
     </h1>
     <div>
-      <div class="statement-rules-content">Your program receives characters.<br>
-        Your actions have an effect.<br>
+      <div class="statement-rules-content">
+        You will receive shape you need to fill with polyominos. You can rotate polyominos any way you like. So you can rotate it by <const>0</const>, <const>90</const>, <const>180</const> or <const>270</const> degrees, and/or you can flip it horizontally/vertically. So there are at most 8 possible configurations for each tile.<br><br>Here is overview of every single tile used in this puzzle.
         <br>
-        The game zone works as follows:
-        <ul>
-          <li>There are coordinates.</li>
-        </ul>
-        <br>
-        The units work as follows:
-        <ul>
-          <li>They move around.</li>
-        </ul>
-        You <strong>lose</strong> if:
-        <ul>
-          <li>You mess up.</li>
-          <li>You do not supply a valid sequence of actions.</li>
-        </ul>
+        <div style="text-align: center; margin: 15px">
+          <img src="https://github.com/VizGhar/CG-Polyominos/blob/main/pieces.jpg?raw=true"
+               style="width: 400px; max-width: 100%" />
+          <div style="margin: auto; width: 400px; max-width: 100%"><em>All available shapes - for example polyomino with id <action>A</action> forms L-like shape</em></div>
+        </div>
       </div>
-    </div>
-  </div>
-  <!-- EXPERT RULES -->
-  <div class="statement-section statement-expertrules">
-    <h1>
-      <span class="icon icon-expertrules">&nbsp;</span>
-      <span>Expert Rules</span>
-    </h1>
-    <div class="statement-expert-rules-content">
-      If you're going to run local simulations, you'll need to know this!
     </div>
   </div>
   <!-- EXAMPLES -->
@@ -57,47 +35,59 @@
       <span>Example</span>
     </h1>
 
-    <div class="statement-examples-text">
-      A basic situation, an instruction, a result.
+    <div class="statement-examples-text">If you take first test as an example, you need to fill this shape:<br><br>
+      <p>
+      <code>
+        OOO<br>
+        OOO<br>
+        O.O
+      </code>
+      </p>
+      <p>
+        Using <const>A</const> and <const>D</const> shape as shown in image above.<br>You can achieve that by placing tiles like this:
+      </p>
+      <p>
+      <code>
+        DAA<br>
+        DDA<br>
+        D.A
+      </code>
+      </p>
+      <p>
+        Or like this:
+      </p>
+      <code>
+        AAD<br>
+        ADD<br>
+        A.D
+      </code>
+      <p>
+        In case of second example you will receive
+      </p>
     </div>
+  </div>
 
-  </div>
-  <!-- WARNING -->
-  <div class="statement-section statement-warning">
-    <h1>
-      <span class="icon icon-warning">&nbsp;</span>
-      <span>Note</span>
-    </h1>
-    <div class="statement-warning-content">
-      <b>Don’t forget to run the tests by launching them from the “Test cases” window</b>. You can submit at any time
-      to recieve a score against the training validators. <b>You can submit as many times as you like</b>. Your most
-      recent submission will be used for the final ranking.<br>
-      <br>
-      <strong>Warning:</strong> the validation tests used to compute the final score are not the same as the ones used
-      during the event.
-      Harcoded solutions will not score highly.<br>
-      <br>
-      Don't hesitate to change the viewer's options to help debug your code (<img style="opacity:.8;background:#20252a;"
-        height="18" src="https://www.codingame.com/servlet/fileservlet?id=3463235186409" width="18">).
-    </div>
-  </div>
   <!-- PROTOCOL -->
   <div class="statement-section statement-protocol">
     <h1>
       <span class="icon icon-protocol">&nbsp;</span>
       <span>Game Input</span>
     </h1>
-    <!-- Protocol block -->
-    <div class="blk">
-      <div class="text">The program must first read the initialization data from standard input. Then, provide to the
-        standard output one line with ...</div>
-    </div>
 
-    <!-- Protocol block -->
     <div class="blk">
       <div class="title">Input</div>
       <div class="text">
-        <p><span class="statement-lineno">Line 1: </span>one string <var>...</var>, the ...</p>
+        <p>Every turn you will receive current configuration in following format:</p>
+        <p><span class="statement-lineno">Line 1:</span> ids of remaining polyominos to place on board for example: <const>ABEFN</const></p>
+        <p><span class="statement-lineno">Line 2:</span> id of polyomino to place in this turn for example: <const>F</const></p>
+        <p><span class="statement-lineno">Line 3: </span>space separated <var>h</var> - height and <var>w</var> - width of game board</p>
+        <p><span class="statement-lineno">Following lines: </span> <var>h</var> strings of length <var>w</var> representing game board, where
+        <ul>
+          <li><const>.</const> - have to remain unoccupied
+          <li><const>O</const> - is not yet occupied
+          <li><const>A</const> through <const>N</const> - is occupied by shape 
+        </ul>
+        </p>
       </div>
     </div>
 
@@ -105,7 +95,8 @@
     <div class="blk">
       <div class="title">Output</div>
       <div class="text">
-        <span class="statement-lineno">A single line</span> containing ...
+        <p><span class="statement-lineno">Line 1:</span> shape of polyomino as semicolon separated lines. For example line in format <const>..O;OOO;..O</const> represents T shaped tile rotated by 90 degrees clockwise</p>
+        <p><span class="statement-lineno">Line 2:</span> space separated <var>row</var> and <var>col</var> where the top-left corner of polyomino should be placed (top-left corner of its enclosing rectangle)</p>
         <br>
       </div>
     </div>
@@ -113,9 +104,9 @@
     <!-- Protocol block -->
     <div class="blk">
       <div class="title">Constraints</div>
-      <div class="text"><var>...</var> contains between 1 and 500 characters.<br>
+      <div class="text">
         <br>Allotted response time to output
-        is ≤ <const>2</const> seconds.</div>
+        is ≤ <const>1</const> seconds.</div>
     </div>
   </div>
   <!-- STORY -->
