@@ -4,6 +4,7 @@ import com.codingame.gameengine.core.AbstractPlayer
 import com.codingame.gameengine.core.AbstractReferee
 import com.codingame.gameengine.core.SoloGameManager
 import com.codingame.gameengine.module.entities.GraphicEntityModule
+import com.codingame.gameengine.module.entities.Text
 import com.google.inject.Inject
 
 val tileVariants = mapOf(
@@ -29,17 +30,18 @@ class Referee : AbstractReferee() {
     private lateinit var gameManager: SoloGameManager<Player>
 
     @Inject
-    private val graphicEntityModule: GraphicEntityModule? = null
+    private lateinit var graphicEntityModule: GraphicEntityModule
 
     private lateinit var remainingCharacters: String
     private lateinit var board: Array<CharArray>
 
     override fun init() {
-        gameManager.firstTurnMaxTime = 1000
+        gameManager.firstTurnMaxTime = 2000
         gameManager.turnMaxTime = 50
         remainingCharacters = gameManager.testCaseInput.last()
         val (rows, _) = gameManager.testCaseInput.first().split(" ").map { it.toInt() }
         board = gameManager.testCaseInput.drop(1).take(rows).map { it.toCharArray() }.toTypedArray()
+        initVisual()
     }
 
     override fun gameTurn(turn: Int) {
@@ -74,6 +76,8 @@ class Referee : AbstractReferee() {
                 }
             }
 
+            visualize()
+
             remainingCharacters = remainingCharacters.drop(1)
         } catch (e: AbstractPlayer.TimeoutException) {
             gameManager.loseGame("Timeout")
@@ -86,5 +90,25 @@ class Referee : AbstractReferee() {
         if (remainingCharacters == "") {
             gameManager.winGame("Congrats!")
         }
+    }
+
+    private lateinit var text: Text
+
+    private fun initVisual() {
+
+        text = graphicEntityModule
+            .createText("")
+            .setFontFamily("monospace")
+            .setFillColor(0xffffff)
+
+        visualize()
+    }
+
+    private fun visualize() {
+        text.setText(
+            "remaining tiles = ${remainingCharacters.toList().sorted().joinToString("")}\n" +
+            "currently placing = ${remainingCharacters[0]}\n" +
+            board.joinToString("\n") { it.joinToString(" ") }
+        )
     }
 }

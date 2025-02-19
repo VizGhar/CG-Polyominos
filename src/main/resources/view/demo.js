@@ -1,1 +1,2 @@
-export const demo = null;
+export const demo = 
+{"views":["KEY_FRAME 0\n{\"global\":{\"entitymodule\":{\"width\":1920,\"height\":1080}},\"frame\":{\"entitymodule\":\"CT\\nU1 1 f 16777215 v 1 ff monospace T 'remaining tiles = AD\\ncurrently placing = A\\nO O O\\nO O O\\nO . O'\"}}\n","KEY_FRAME 1\n{\"entitymodule\":\"U1 1 T 'remaining tiles = AD\\ncurrently placing = A\\nO A A\\nO O A\\nO . A'\"}\n","KEY_FRAME 2\n{\"entitymodule\":\"U1 1 T 'remaining tiles = D\\ncurrently placing = D\\nD A A\\nD D A\\nD . A'\"}\n"],"agents":[{"index":0,"name":"Player 0","avatar":"https://static.codingame.com/servlet/fileservlet?id=16085734516701&format=viewer_avatar","agentId":0}]};
