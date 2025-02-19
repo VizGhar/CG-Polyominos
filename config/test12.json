@@ -3,7 +3,7 @@
     "1": "Runner",
     "2": "Runner"
   },
-  "testIn": "13 10\n....OOO...\n....OOO...\n..O.OOO...\n..O..O....\n..OOOOO...\n....OOOOO.\n....OOOOO.\n...OOOOOO.\n..OOOOOOO.\n..OOO.OO..\n..O....OOO\nOOO....OOO\nOOO......O\nEDNBLFGHKIMA",
+  "testIn": "13 10\n....OOO...\n....OOO...\n..O.OOO...\n..O..O....\n..OOOOO...\n....OOOOO.\n....OOOOO.\n...OOOOOO.\n..OOOOOOO.\n..OOO.OO..\n..O....OOO\nOOO....OOO\nOOO......O\nEDNBLFGJHKIMA",
   "isTest": "false",
   "isValidator": "true"
 }
