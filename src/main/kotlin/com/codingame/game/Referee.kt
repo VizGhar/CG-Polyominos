@@ -5,7 +5,6 @@ import com.codingame.gameengine.core.AbstractReferee
 import com.codingame.gameengine.core.SoloGameManager
 import com.codingame.gameengine.module.entities.GraphicEntityModule
 import com.codingame.gameengine.module.entities.Rectangle
-import com.codingame.gameengine.module.entities.Text
 import com.google.inject.Inject
 import kotlin.math.roundToInt
 
@@ -77,9 +76,12 @@ class Referee : AbstractReferee() {
             gameManager.player.execute()
 
             // processing outputs
-            val (tile, pos) = gameManager.player.outputs
-            val adjustedInput = tile.split(";")
-            val (row, col) = pos.split(" ").map { it.toInt() }
+            val positions = gameManager.player.outputs[0].split(" ").map { it.substringAfter("(").substringBefore(")").split(",").map { it.toInt() } }
+            val row = positions.minOf { it[0] }
+            val col = positions.minOf { it[1] }
+            val maxRow = positions.maxOf { it[0] }
+            val maxCol = positions.maxOf { it[1] }
+            val adjustedInput = (row..maxRow).map { y -> (col..maxCol).map { x -> if (positions.contains(listOf(y, x))) 'O' else '.'}.joinToString("") }
 
             if (!(tileVariants[currentChar]?: listOf()).contains(adjustedInput)) {
                 gameManager.loseGame("Illegal tile variant")

@@ -3,8 +3,7 @@ read remaining:string(15)
 read current:string(1)
 read h:int w:int
 loop h read line:string(w)
-write OO;.O;.O
-0 1
+write (0,0) (0,1) (1,0) (2,0)
 
 STATEMENT
 Place all polyominos to form predefined 2D shape
