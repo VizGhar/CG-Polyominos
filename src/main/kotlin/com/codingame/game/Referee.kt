@@ -111,47 +111,23 @@ class Referee : AbstractReferee() {
         }
     }
 
-    private lateinit var text: Text
-
     private fun isTaken(x: Int, y: Int) = x in board[0].indices && y in board.indices && board[y][x] != '.'
 
     private val tiles = mutableMapOf<Pair<Int,Int>, Rectangle>()
 
     private fun initVisual() {
-
-        text = graphicEntityModule
-            .createText("")
-            .setFontFamily("monospace")
-            .setFillColor(0xffffff)
-
-        val til = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) } }.filterNotNull() }.flatten()
-        val top = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && !isTaken(x, y - 1) } }.filterNotNull() }.flatten()
-        val bot = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && !isTaken(x, y + 1) } }.filterNotNull() }.flatten()
-        val lef = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && !isTaken(x - 1, y) } }.filterNotNull() }.flatten()
-        val rig = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && !isTaken(x + 1, y) } }.filterNotNull() }.flatten()
-        val otl = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && !isTaken(x - 1, y) && !isTaken(x, y - 1) } }.filterNotNull() }.flatten()
-        val otr = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && !isTaken(x + 1, y) && !isTaken(x, y - 1) } }.filterNotNull() }.flatten()
-        val obl = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && !isTaken(x - 1, y) && !isTaken(x, y + 1) } }.filterNotNull() }.flatten()
-        val obr = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && !isTaken(x + 1, y) && !isTaken(x, y + 1) } }.filterNotNull() }.flatten()
-        val ctl = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && isTaken(x - 1, y) && isTaken(x, y - 1) && !isTaken(x - 1, y - 1) } }.filterNotNull() }.flatten()
-        val ctr = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && isTaken(x + 1, y) && isTaken(x, y - 1) && !isTaken(x + 1, y - 1) } }.filterNotNull() }.flatten()
-        val cbl = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && isTaken(x - 1, y) && isTaken(x, y + 1) && !isTaken(x - 1, y + 1) } }.filterNotNull() }.flatten()
-        val cbr = board.mapIndexed { y, chars -> chars.mapIndexed { x, _ -> (x to y).takeIf { isTaken(x, y) && isTaken(x + 1, y) && isTaken(x, y + 1) && !isTaken(x + 1, y + 1) } }.filterNotNull() }.flatten()
+        graphicEntityModule.createSprite().setImage("background.jpg")
 
         val g = graphicEntityModule.createGroup()
-        for ((x, y) in til) { graphicEntityModule.createRectangle().setFillColor(0xD9D9D9).setLineWidth(3.0).setLineColor(0xABCDEF).setX(x * 100).setY(y * 100).also { g.add(it); tiles[x to y] = it } }
-        for ((x, y) in top) { graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(0.0)).setX(x * 100).setY(y * 100 - 15).also { g.add(it) } }
-        for ((x, y) in rig) { graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(90.0)).setX(x * 100 + 115).setY(y * 100).also { g.add(it) } }
-        for ((x, y) in bot) { graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(180.0)).setX(x * 100 + 100).setY(y * 100 + 115).also { g.add(it) } }
-        for ((x, y) in lef) { graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(270.0)).setX(x * 100 - 15).setY(y * 100 + 100).also { g.add(it) } }
-        for ((x, y) in otl) { graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(0.0)).setX(x * 100 - 15).setY(y * 100 - 15).also { g.add(it) } }
-        for ((x, y) in otr) { graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(90.0)).setX(x * 100 + 115).setY(y * 100 - 15).also { g.add(it) } }
-        for ((x, y) in obl) { graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(270.0)).setX(x * 100 - 15).setY(y * 100 + 115).also { g.add(it) } }
-        for ((x, y) in obr) { graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(180.0)).setX(x * 100 + 115).setY(y * 100 + 115).also { g.add(it) } }
-        for ((x, y) in ctl) { graphicEntityModule.createSprite().setImage("curve_tr.png").setRotation(Math.toRadians(0.0)).setX(x * 100 - 30).setY(y * 100 - 30).also { g.add(it) } }
-        for ((x, y) in ctr) { graphicEntityModule.createSprite().setImage("curve_tr.png").setRotation(Math.toRadians(90.0)).setX(x * 100 + 130).setY(y * 100 - 30).also { g.add(it) } }
-        for ((x, y) in cbl) { graphicEntityModule.createSprite().setImage("curve_tr.png").setRotation(Math.toRadians(270.0)).setX(x * 100 - 30).setY(y * 100 + 130).also { g.add(it) } }
-        for ((x, y) in cbr) { graphicEntityModule.createSprite().setImage("curve_tr.png").setRotation(Math.toRadians(180.0)).setX(x * 100 + 130).setY(y * 100 + 130).also { g.add(it) } }
+        board.indices.forEach { y -> board[0].indices.forEach { x -> graphicEntityModule.createRectangle().setFillColor(if (board[y][x] == '.') 0xFFFFFF else 0xCCDDEE).setX(x * 100 + 5).setY(y * 100 + 5).setWidth(95).setHeight(95).also { g.add(it); tiles[x to y] = it } } }
+        board[0].indices.forEach { x -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(0.0)).setX(x * 100).setY(-15).setScaleX(1.05).also { g.add(it) } }
+        board[0].indices.forEach { x -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(180.0)).setX(x * 100 + 105).setY(board.size * 100 + 20).setScaleX(1.05).also { g.add(it) } }
+        board.indices.forEach { y -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(90.0)).setX(board[0].size * 100 + 20).setY(y * 100).setScaleX(1.05).also { g.add(it) } }
+        board.indices.forEach { y -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(270.0)).setX(-15).setY(y * 100 + 105).setScaleX(1.05).also { g.add(it) } }
+        graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(0.0)).setX(-15).setY(-15).also { g.add(it) }
+        graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(90.0)).setX(board[0].size * 100 + 20).setY(-15).also { g.add(it) }
+        graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(270.0)).setX(-15).setY(board.size * 100 + 20).also { g.add(it) }
+        graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(180.0)).setX(board[0].size * 100 + 20).setY(board.size * 100 + 20).also { g.add(it) }
 
         val totalH = board.size * 100
         val totalW = board[0].size * 100
@@ -166,12 +142,6 @@ class Referee : AbstractReferee() {
     }
 
     private fun visualize(tile: List<String>, row: Int, col: Int) {
-        text.setText(
-            "remaining tiles = ${remainingCharacters.toList().sorted().joinToString("")}\n" +
-            "currently placing = ${remainingCharacters[0]}\n" +
-            board.joinToString("\n") { it.joinToString(" ") }
-        )
-
         for (dy in tile.indices) {
             for (dx in tile[0].indices) {
                 if (tile[dy][dx] == '.') continue

@@ -18,7 +18,7 @@
     </h1>
     <div>
       <div class="statement-rules-content">
-        You will receive shape you need to fill with polyominos. You can rotate polyominos any way you like. So you can rotate it by <const>0</const>, <const>90</const>, <const>180</const> or <const>270</const> degrees, and/or you can flip it horizontally/vertically. So there are at most 8 possible configurations for each tile.<br><br>Here is overview of every single tile used in this puzzle.
+        You will receive shape you need to fill with polyominos. You can rotate polyomino by <const>0</const>, <const>90</const>, <const>180</const> or <const>270</const> degrees, and/or you can flip it horizontally/vertically. So there are at most 8 possible configurations for each tile.<br><br>Here is overview of every single tile used in this puzzle.
         <br>
         <div style="text-align: center; margin: 15px">
           <img src="https://github.com/VizGhar/CG-Polyominos/blob/main/pieces.jpg?raw=true"
@@ -35,7 +35,7 @@
       <span>Example</span>
     </h1>
 
-    <div class="statement-examples-text">If you take first test as an example, you need to fill this shape:<br><br>
+    <div class="statement-examples-text">If you take first test case as an example, you will need to use <const>A</const> and <const>D</const> polyominos (in this order - see Game Input section) to fill this shape:<br><br>
       <p>
       <code>
         OOO<br>
@@ -44,7 +44,7 @@
       </code>
       </p>
       <p>
-        Using <const>A</const> and <const>D</const> shape as shown in image above.<br>You can achieve that by placing tiles like this:
+        You can fill the shape by placing tiles either like this:
       </p>
       <p>
       <code>
@@ -62,8 +62,29 @@
         A.D
       </code>
       <p>
-        In case of second example you will receive
+        <br>
+        So if you want to place tiles as shown in second example, your output should look like this:<br>
+        <p><code>
+          OO;O.;O.<br>
+          0 0<br>
+          .O;OO;.O<br>
+          0 1
+        </code>
+        </p>
       </p>
+      <p>
+        So in first 2 lines, you are placing polyomino <const>A</const> (L-shaped) to position <const>0</const>, <const>0</const> rotated such that short side of L shape is facing top of board and long side is facing left. In next 2 lines you are placing correctly rotated tile <const>D</const> to position <const>0</const>, <const>1</const> (row, column)
+      </p>
+    </div>
+  </div>
+
+  <div class="statement-section statement-examples">
+    <h1>
+      <span class="icon icon-example">&nbsp;</span>
+      <span>Additional Info</span>
+    </h1>
+
+    <div class="statement-examples-text">Background image from <a href="https://www.freepik.com/free-photo/red-wooden-christmas-trees-table_3347782.htm#fromView=keyword&page=4&position=41&uuid=b7002b40-73dd-4dd9-b20b-2a32355859ad&query=Wood+Wallpaper+1920x1080">Freepik.com</a><br><br>
     </div>
   </div>
 
