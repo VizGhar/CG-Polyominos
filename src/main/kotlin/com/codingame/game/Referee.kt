@@ -128,10 +128,10 @@ class Referee : AbstractReferee() {
 
         val g = graphicEntityModule.createGroup()
         board.indices.forEach { y -> board[0].indices.forEach { x -> graphicEntityModule.createRectangle().setFillColor(if (board[y][x] == '.') 0xFFFFFF else 0xCCDDEE).setX(x * 100 + 6).setY(y * 100 + 6).setWidth(94).setHeight(94).also { g.add(it); tiles[x to y] = it } } }
-        board[0].indices.forEach { x -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(0.0)).setX(x * 100).setY(-16).setScaleX(1.06).also { g.add(it) } }
-        board[0].indices.forEach { x -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(180.0)).setX(x * 100 + 106).setY(board.size * 100 + 21).setScaleX(1.06).also { g.add(it) } }
-        board.indices.forEach { y -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(90.0)).setX(board[0].size * 100 + 21).setY(y * 100).setScaleX(1.06).also { g.add(it) } }
-        board.indices.forEach { y -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(270.0)).setX(-16).setY(y * 100 + 106).setScaleX(1.06).also { g.add(it) } }
+        board[0].indices.forEach { x -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(0.0)).setX(x * 100 - 1).setY(-16).setScaleX(1.07).also { g.add(it) } }
+        board[0].indices.forEach { x -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(180.0)).setX(x * 100 + 106).setY(board.size * 100 + 21).setScaleX(1.07).also { g.add(it) } }
+        board.indices.forEach { y -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(90.0)).setX(board[0].size * 100 + 21).setY(y * 100 - 1).setScaleX(1.07).also { g.add(it) } }
+        board.indices.forEach { y -> graphicEntityModule.createSprite().setImage("side_t.png").setRotation(Math.toRadians(270.0)).setX(-16).setY(y * 100 + 106).setScaleX(1.07).also { g.add(it) } }
         graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(0.0)).setX(-16).setY(-16).also { g.add(it) }
         graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(90.0)).setX(board[0].size * 100 + 21).setY(-16).also { g.add(it) }
         graphicEntityModule.createSprite().setImage("corner_tl.png").setRotation(Math.toRadians(270.0)).setX(-16).setY(board.size * 100 + 21).also { g.add(it) }
