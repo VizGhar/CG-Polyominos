@@ -6,9 +6,9 @@ loop h read line:string(w)
 write (0,0) (0,1) (1,0) (2,0)
 
 STATEMENT
-Place all polyominos to form predefined 2D shape
+Place all polyominoes to form predefined 2D shape
 
 INPUT
-remaining: IDs of remaining tiles
-current: ID of current tile to place on board
-line: single line of board - place your tiles only on 'O' symbols
+remaining: IDs of remaining polyominoes
+current: ID of current polyomino to place on board
+line: single line of board - place your polyominoes only on 'O' symbols

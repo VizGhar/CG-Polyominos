@@ -118,7 +118,7 @@ class Referee : AbstractReferee() {
     }
 
     private val tiles = mutableMapOf<Pair<Int,Int>, Rectangle>()
-    private val polyominos = mutableMapOf<Int, Group>()
+    private val polyominoes = mutableMapOf<Int, Group>()
     private var baseX: Int = -1
     private var baseY: Int = -1
     private var step: Double = -1.0
@@ -153,12 +153,12 @@ class Referee : AbstractReferee() {
             val tile = tileVariants[c] ?: throw IllegalStateException("Error 01 - please contact author via comment on contribution page")
             val color = tileColors[c] ?: throw IllegalStateException("Error 01 - please contact author via comment on contribution page")
             for (y in tile[0].indices) { for (x in tile[0][0].indices) { if (tile[0][y][x] != '.') tileGroup.add(graphicEntityModule.createRectangle().setWidth(100).setHeight(100).setFillColor(color).setLineColor(0x000000).setLineWidth(3.0).setX(x * 100).setY(y * 100)) } }
-            polyominos[index] = tileGroup.setX(50 + Random.nextInt(150)).setY(450 + Random.nextInt(100)).setZIndex(100 - index).setScale(scale).setRotation(Math.random() * 2 * Math.PI)
+            polyominoes[index] = tileGroup.setX(50 + Random.nextInt(150)).setY(450 + Random.nextInt(100)).setZIndex(100 - index).setScale(scale).setRotation(Math.random() * 2 * Math.PI)
         }
     }
 
     private fun visualize(tile: List<String>, row: Int, col: Int) {
-        val polyomino = polyominos[allCharacters.indexOf(remainingCharacters[0])] ?: throw IllegalStateException("Error 02 - please contact author via comment on contribution page")
+        val polyomino = polyominoes[allCharacters.indexOf(remainingCharacters[0])] ?: throw IllegalStateException("Error 02 - please contact author via comment on contribution page")
         val configuration = tileVariants[remainingCharacters[0]]?.indexOf(tile) ?: throw IllegalStateException("Error 03 - please contact author via comment on contribution page")
         val flip = configuration / 4 == 1
         val rightRotations = configuration % 4
