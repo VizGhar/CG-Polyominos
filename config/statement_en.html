@@ -8,9 +8,8 @@
     </h1>
     <div class="statement-goal-content">
       <p>
-Little Timmy is "helping" you build a puzzle. He is handing you polyomino pieces one by one. However, you must place them in the exact order he gives them to you. If you don’t, he’ll throw a tantrum!</p>
-<p>
-Your task is to carefully arrange all the given polyominoes to perfectly fill the predefined shape while respecting his order. Rotate and flip the pieces as needed, but make sure everything fits!</p>
+
+Your task is to carefully arrange all the given polyominoes to perfectly fill the predefined shape. Rotate and flip the pieces as needed, but make sure everything fits!</p>
     </div>
   </div>
 
@@ -62,21 +61,7 @@ Your task is to carefully arrange all the given polyominoes to perfectly fill th
       </code>
       </p>
       <p>
-        <br>
-        If you choose the second variant, your output should consist of 2 lines, 1 for each game turn:<br>
-        <p><code>
-          (0,0) (0,1) (1,0) (2,0)<br>
-          (0,2) (1,1) (1,2) (2,2)
-        </code>
-        </p>
-      </p>
-      <p>
-        <br>
-        <strong>Explanation:</strong>
-        <ul>
-          <li>The first line represents polyomino A (L-shaped), placed at position (0,0) with its short side facing up and the long side extending left.</li>
-          <li>The second line represents polyomino D, positioned at (0,2) and rotated to fit the remaining space.</li>
-        </ul>
+        So you should print either one of them.
       </p>
     </div>
   </div>
@@ -102,15 +87,12 @@ And sources in my <a href="https://github.com/VizGhar/CG-Polyominos">Github repo
     <div class="blk">
       <div class="title">Input</div>
       <div class="text">
-        <p>Every turn you will receive current configuration in following format:</p>
-        <p><span class="statement-lineno">Line 1:</span> ids of remaining polyominoes to place on board for example: <const>ABEFN</const></p>
-        <p><span class="statement-lineno">Line 2:</span> id of polyomino to place in this turn for example: <const>F</const></p>
-        <p><span class="statement-lineno">Line 3: </span>space separated <var>h</var> - height and <var>w</var> - width of game board</p>
+        <p><span class="statement-lineno">Line 1:</span> <var>ids</var> of remaining polyominoes to place on board for example: <const>ABEFN</const></p>
+        <p><span class="statement-lineno">Line 2: </span>space separated <var>h</var> - height and <var>w</var> - width of game board</p>
         <p><span class="statement-lineno">Following lines: </span> <var>h</var> strings of length <var>w</var> representing game board, where
         <ul>
-          <li><const>.</const> - have to remain unoccupied
-          <li><const>O</const> - is not yet occupied
-          <li><const>A</const> through <const>N</const> - is occupied by shape 
+          <li><code><const>.</const></code> - must remain unoccupied
+          <li><code><const>O</const></code> - must be occupied
         </ul>
         </p>
       </div>
@@ -120,9 +102,11 @@ And sources in my <a href="https://github.com/VizGhar/CG-Polyominos">Github repo
     <div class="blk">
       <div class="title">Output</div>
       <div class="text">
-        <p><span class="statement-lineno">1 Line:</span> <var>n</var> space separated pairs of <const>(</const><var>row</var><const>,</const><var>column</var><const>)</const> values representing each block of current polyomino.</p>
-         For example <const>(0,2) (1,1) (1,2) (2,2)</const>
-        <br>
+        <var>h</var> lines of length <var>w</var> representing final board where
+        <ul>
+          <li><code><const>.</const></code> - is unoccupied
+          <li><code><const>A</const>-<const>N</const></code> - as ID of polyomino that covers given cell
+        </ul>
       </div>
     </div>
 
@@ -130,7 +114,9 @@ And sources in my <a href="https://github.com/VizGhar/CG-Polyominos">Github repo
     <div class="blk">
       <div class="title">Constraints</div>
       <div class="text">
-        <br>Allotted response time to output is ≤ <const>2s</const> in first turn and <const>50ms</const> in remaining turns</div>
+        Maximum of<const>14</const> <var>ids</var><br>
+        <const>2</const><<var>h</var>,<var>w</var><<const>20</const><br>
+        Allotted response time to output is ≤ <const>2s</const></div>
     </div>
   </div>
 </div>

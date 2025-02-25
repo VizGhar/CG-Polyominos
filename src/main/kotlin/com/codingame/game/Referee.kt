@@ -53,72 +53,83 @@ class Referee : AbstractReferee() {
     private lateinit var graphicEntityModule: GraphicEntityModule
 
     private lateinit var allCharacters: String
-    private lateinit var remainingCharacters: String
     private lateinit var board: Array<CharArray>
 
     override fun init() {
         gameManager.firstTurnMaxTime = 2000
         gameManager.turnMaxTime = 50
         allCharacters = gameManager.testCaseInput.last()
-        remainingCharacters = allCharacters
         val (rows, _) = gameManager.testCaseInput.first().split(" ").map { it.toInt() }
         board = gameManager.testCaseInput.drop(1).take(rows).map { it.toCharArray() }.toTypedArray()
         initVisual()
     }
 
+    data class PolyominoPlacement(val tileId: Char, val shape: List<String>, val row: Int, val col: Int)
+
+    private var placements = mutableListOf<PolyominoPlacement>()
+
     override fun gameTurn(turn: Int) {
-        val currentChar = remainingCharacters[0]
+        if (turn == 1) {
+            // input processing
+            gameManager.player.sendInputLine(allCharacters.toList().sorted().joinToString(""))
+            gameManager.player.sendInputLine("${board.size} ${board[0].size}")
+            board.forEach { gameManager.player.sendInputLine(it.joinToString("")) }
 
-        // input processing
-        gameManager.player.sendInputLine(remainingCharacters.toList().sorted().joinToString(""))
-        gameManager.player.sendInputLine(currentChar.toString())
-        gameManager.player.sendInputLine("${board.size} ${board[0].size}")
-        board.forEach { gameManager.player.sendInputLine(it.joinToString("")) }
+            try {
+                // execution
+                gameManager.player.execute()
 
-        try {
-            // execution
-            gameManager.player.execute()
+                // processing outputs
+                val receivedBoard = gameManager.player.outputs.take(board.size)
 
-            // processing outputs
-            val positions = gameManager.player.outputs[0].split(" ").map { it.substringAfter("(").substringBefore(")").split(",").map { it.toInt() } }
-            val row = positions.minOf { it[0] }
-            val col = positions.minOf { it[1] }
-            val maxRow = positions.maxOf { it[0] }
-            val maxCol = positions.maxOf { it[1] }
-            val adjustedInput = (row..maxRow).map { y -> (col..maxCol).map { x -> if (positions.contains(listOf(y, x))) 'O' else '.'}.joinToString("") }
+                if (receivedBoard.any { it.length != board[0].size }) {
+                    gameManager.loseGame("All lines should be exactly ${board[0].size} long")
+                    return
+                }
 
-            if (!(tileVariants[currentChar]?: listOf()).contains(adjustedInput)) {
-                gameManager.loseGame("Illegal tile variant")
+                placements += allCharacters.map { tileId ->
+                    val positions = receivedBoard.mapIndexed { y, s -> s.mapIndexedNotNull { x, c -> if (c == tileId) x to y else null } }.flatten()
+                    val minRow = positions.minOf { it.second }
+                    val minCol = positions.minOf { it.first }
+                    val maxRow = positions.maxOf { it.second }
+                    val maxCol = positions.maxOf { it.first }
+                    val adjustedInput = (minRow..maxRow).map { y -> (minCol..maxCol).map { x -> if (positions.contains(x to y)) 'O' else '.' }.joinToString("") }
+                    PolyominoPlacement(tileId, adjustedInput, minRow, minCol)
+                }
+
+            } catch (e: AbstractPlayer.TimeoutException) {
+                gameManager.loseGame("Timeout - failed to provide ${board.size} lines describing final board")
                 return
             }
-
-            for (dy in adjustedInput.indices) {
-                for (dx in adjustedInput[0].indices) {
-                    if (adjustedInput[dy][dx] == '.') continue
-                    if (dy + row >= board.size || dx + col >= board[0].size) { gameManager.loseGame("Incorrect tile placement"); return }
-                    if (board[dy + row][dx + col] != 'O') { gameManager.loseGame("Incorrect tile placement"); return }
-                    board[dy + row][dx + col] = currentChar
-                }
-            }
-
-            visualize(adjustedInput, row, col)
-
-            remainingCharacters = remainingCharacters.drop(1)
-        } catch (e: AbstractPlayer.TimeoutException) {
-            gameManager.loseGame("Timeout")
-            return
-        } catch (e: Exception) {
-            gameManager.loseGame("Invalid player output. Check game statement")
-            return
         }
 
-        if (remainingCharacters == "") {
-            gameManager.winGame("Congrats!")
+        val (tileId, adjustedInput, row, col) = placements.removeAt(0)
+
+        for (dy in adjustedInput.indices) {
+            for (dx in adjustedInput[0].indices) {
+                if (adjustedInput[dy][dx] == '.') continue
+                if (dy + row >= board.size || dx + col >= board[0].size) {
+                    gameManager.loseGame("Placing tile outside the board")
+                    return
+                }
+                if (board[dy + row][dx + col] != 'O') {
+                    visualize(adjustedInput, tileId, row, col)
+                    gameManager.loseGame("Placing one tile on another")
+                    return
+                }
+                board[dy + row][dx + col] = tileId
+            }
+        }
+
+        visualize(adjustedInput, tileId, row, col)
+
+        if (placements.isEmpty()) {
+            gameManager.winGame("Congratulations!")
         }
     }
 
     private val tiles = mutableMapOf<Pair<Int,Int>, Rectangle>()
-    private val polyominoes = mutableMapOf<Int, Group>()
+    private val polyominoes = mutableMapOf<Char, Group>()
     private var baseX: Int = -1
     private var baseY: Int = -1
     private var step: Double = -1.0
@@ -148,18 +159,19 @@ class Referee : AbstractReferee() {
         step = (scale * 100)
         g.setScale(scale).setX(baseX).setY(baseY)
 
-        remainingCharacters.forEachIndexed { index, c ->
+        allCharacters.forEachIndexed { index, c ->
             val tileGroup = graphicEntityModule.createGroup()
             val tile = tileVariants[c] ?: throw IllegalStateException("Error 01 - please contact author via comment on contribution page")
             val color = tileColors[c] ?: throw IllegalStateException("Error 01 - please contact author via comment on contribution page")
             for (y in tile[0].indices) { for (x in tile[0][0].indices) { if (tile[0][y][x] != '.') tileGroup.add(graphicEntityModule.createRectangle().setWidth(100).setHeight(100).setFillColor(color).setLineColor(0x000000).setLineWidth(3.0).setX(x * 100).setY(y * 100)) } }
-            polyominoes[index] = tileGroup.setX(50 + Random.nextInt(150)).setY(450 + Random.nextInt(100)).setZIndex(100 - index).setScale(scale).setRotation(Math.random() * 2 * Math.PI)
+            polyominoes[c] = tileGroup.setX(50 + Random.nextInt(150)).setY(450 + Random.nextInt(100)).setZIndex(100 - index).setScale(scale).setRotation(Math.random() * 2 * Math.PI)
         }
     }
 
-    private fun visualize(tile: List<String>, row: Int, col: Int) {
-        val polyomino = polyominoes[allCharacters.indexOf(remainingCharacters[0])] ?: throw IllegalStateException("Error 02 - please contact author via comment on contribution page")
-        val configuration = tileVariants[remainingCharacters[0]]?.indexOf(tile) ?: throw IllegalStateException("Error 03 - please contact author via comment on contribution page")
+    private fun visualize(tile: List<String>, tileId: Char, row: Int, col: Int) {
+        val polyomino = polyominoes[tileId] ?: throw IllegalStateException("Error 02 - please contact author via comment on contribution page")
+        val configuration = tileVariants[tileId]?.indexOf(tile) ?: throw IllegalStateException("Error 03 - please contact author via comment on contribution page")
+
         val flip = configuration / 4 == 1
         val rightRotations = configuration % 4
 
@@ -175,6 +187,7 @@ class Referee : AbstractReferee() {
             .setRotation(Math.toRadians(90.0 * rightRotations))
             .setX(3 + baseX + ((col + dx) * step).roundToInt())
             .setY(3 + baseY + ((row + dy) * step).roundToInt())
+
         graphicEntityModule.commitWorldState(0.99)
         polyomino.setZIndex(1)
     }

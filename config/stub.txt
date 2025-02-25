@@ -1,14 +1,13 @@
-gameloop
-read remaining:string(15)
-read current:string(1)
+read ids:string(15)
 read h:int w:int
 loop h read line:string(w)
-write (0,0) (0,1) (1,0) (2,0)
+write DAA
+DDA
+D.A
 
 STATEMENT
 Place all polyominoes to form predefined 2D shape
 
 INPUT
-remaining: IDs of remaining polyominoes
-current: ID of current polyomino to place on board
+remaining: IDs of polyominoes to use
 line: single line of board - place your polyominoes only on 'O' symbols
