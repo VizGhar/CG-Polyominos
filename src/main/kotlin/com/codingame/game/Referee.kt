@@ -46,6 +46,8 @@ val tileColors = mapOf(
 
 class Referee : AbstractReferee() {
 
+    private val random = Random(0)
+
     @Inject
     private lateinit var gameManager: SoloGameManager<Player>
 
@@ -87,7 +89,12 @@ class Referee : AbstractReferee() {
                     return
                 }
 
-                placements += allCharacters.map { tileId ->
+                allCharacters.filter { !receivedBoard.joinToString("").contains(it) }.takeIf { it.isNotEmpty() }?.let {
+                    gameManager.loseGame("Polyominoes ${it.split("").filter { it.isNotEmpty() }.joinToString()} missing")
+                    return
+                }
+
+                val preparedPlacements = allCharacters.map { tileId ->
                     val positions = receivedBoard.mapIndexed { y, s -> s.mapIndexedNotNull { x, c -> if (c == tileId) x to y else null } }.flatten()
                     val minRow = positions.minOf { it.second }
                     val minCol = positions.minOf { it.first }
@@ -96,6 +103,9 @@ class Referee : AbstractReferee() {
                     val adjustedInput = (minRow..maxRow).map { y -> (minCol..maxCol).map { x -> if (positions.contains(x to y)) 'O' else '.' }.joinToString("") }
                     PolyominoPlacement(tileId, adjustedInput, minRow, minCol)
                 }
+                placements +=
+                    preparedPlacements.filter { it.shape in (tileVariants[it.tileId] ?: emptyList()) }.shuffled(random) +
+                    preparedPlacements.filter { it.shape !in (tileVariants[it.tileId] ?: emptyList()) }
 
             } catch (e: AbstractPlayer.TimeoutException) {
                 gameManager.loseGame("Timeout - failed to provide ${board.size} lines describing final board")
@@ -105,16 +115,21 @@ class Referee : AbstractReferee() {
 
         val (tileId, adjustedInput, row, col) = placements.removeAt(0)
 
+        if (adjustedInput !in (tileVariants[tileId] ?: throw IllegalStateException("Referee error, contact author"))) {
+            gameManager.loseGame("Polyomino $tileId - incorrect shape")
+            return
+        }
+
         for (dy in adjustedInput.indices) {
             for (dx in adjustedInput[0].indices) {
                 if (adjustedInput[dy][dx] == '.') continue
                 if (dy + row >= board.size || dx + col >= board[0].size) {
-                    gameManager.loseGame("Placing tile outside the board")
+                    gameManager.loseGame("Placing polyomino outside the board")
                     return
                 }
                 if (board[dy + row][dx + col] != 'O') {
                     visualize(adjustedInput, tileId, row, col)
-                    gameManager.loseGame("Placing one tile on another")
+                    gameManager.loseGame("Incorrect polyomino placement")
                     return
                 }
                 board[dy + row][dx + col] = tileId
