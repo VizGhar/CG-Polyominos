@@ -4,6 +4,6 @@
     "2": "Rotations A, B, H, J"
   },
   "testIn": "5 8\n..O..OO.\n..O...O.\nO.OO....\nO....O.O\nOOO..OOO\nABHJ",
-  "isTest": "false",
-  "isValidator": "true"
+  "isTest": "true",
+  "isValidator": "false"
 }

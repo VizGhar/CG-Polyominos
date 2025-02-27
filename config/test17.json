@@ -3,7 +3,7 @@
     "1": "Full Brick",
     "2": "Full Brick"
   },
-  "testIn": "4 16\nOOOOOOOOOOOOOOOO\nOOOOOOOOOOOOOOOO\nOOOOOOOOOOOOOOOO\nOOOOOOOOOOOOOOOO\nABCDEFGHIJKLMN",
+  "testIn": "16 4\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nOOOO\nABCDEFGHIJKLMN",
   "isTest": "true",
   "isValidator": "false"
 }

@@ -4,8 +4,8 @@
     "2": "All Flips"
   },
   "testIn": "4 11\nOO....OOO..\n.O.OO.OO.OO\nOO..O.....O\nO...OO....O\nINAL",
-  "isTest": "false",
-  "isValidator": "true"
+  "isTest": "true",
+  "isValidator": "false"
 }
 
 
