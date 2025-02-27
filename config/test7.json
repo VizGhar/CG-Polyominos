@@ -1,9 +1,9 @@
 {
   "title": {
-    "1": "Glass",
-    "2": "Glass"
+    "1": "First Aid Kit",
+    "2": "First Aid Kit"
   },
-  "testIn": "11 7\nOOOOOOO\nOOOOOOO\nOOOOOOO\nOOOOOOO\n.OOOOO.\n..OOO..\n...O...\n...O...\n...O...\n...O...\n..OOO..\nELJMANGIF",
+  "testIn": "6 5\n..O..\nOOOOO\nO.O.O\nOOOOO\nO.O.O\nOOOOO\nHCJLA",
   "isTest": "true",
   "isValidator": "false"
 }

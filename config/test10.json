@@ -1,9 +1,9 @@
 {
   "title": {
-    "1": "Ostrich",
-    "2": "Ostrich"
+    "1": "Llama",
+    "2": "Llama"
   },
-  "testIn": "16 12\n.........OO.\n........OOO.\n........OOOO\n........O...\n..OOOO.OO...\nOOOOOOOOO...\n.OOOOOOOO...\n.OOOOOOO....\n..OOOOO.....\n...OO.......\n....O.......\n....O.......\n....O.......\n....O.......\n....O.......\n....OO......\nFLBHMDIECGAK",
+  "testIn": "11 9\n......O..\n......OOO\n......OOO\n......O..\n......O..\nOO....O..\n.OOOOOO..\n.OOOOOO..\n.OOOOOO..\n.OO..OO..\n.O....O..\nKADLGMEJ",
   "isTest": "false",
   "isValidator": "true"
 }

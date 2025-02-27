@@ -1,9 +1,9 @@
 {
   "title": {
-    "1": "Butterfly",
-    "2": "Butterfly"
+    "1": "Glass",
+    "2": "Glass"
   },
-  "testIn": "9 9\nOO.....OO\nOOO...OOO\nOOO.O.OOO\nOOOOOOOOO\n.OOOOOOO.\nOOOOOOOOO\nOOO.O.OOO\nOOO...OOO\nOO.....OO\nACNGIBHKEFMDL",
+  "testIn": "11 7\nOOOOOOO\nOOOOOOO\nOOOOOOO\nOOOOOOO\n.OOOOO.\n..OOO..\n...O...\n...O...\n...O...\n...O...\n..OOO..\nELJMANGIF",
   "isTest": "true",
   "isValidator": "false"
 }

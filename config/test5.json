@@ -1,9 +1,9 @@
 {
   "title": {
-    "1": "Turtle",
-    "2": "Turtle"
+    "1": "Rotations A, B, H, J",
+    "2": "Rotations A, B, H, J"
   },
-  "testIn": "6 10\n..OOOO....\n.OOOOOO...\n.OOOOOO.OO\n.OOOOOO.O.\nOOOOOOOOO.\n..O..O....\nDHGBCANL",
-  "isTest": "true",
-  "isValidator": "false"
+  "testIn": "5 8\n..O..OO.\n..O...O.\nO.OO....\nO....O.O\nOOO..OOO\nABHJ",
+  "isTest": "false",
+  "isValidator": "true"
 }

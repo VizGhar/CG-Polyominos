@@ -1,0 +1,9 @@
+{
+  "title": {
+    "1": "Owl Mask",
+    "2": "Owl Mask"
+  },
+  "testIn": "9 10\n.O......O.\nOOO....OOO\nOOOOOOOOOO\nOOOOOOOOOO\nOO.OOOO.OO\nOOOOOOOOOO\n.OOOOOOOO.\n..OOOOOO..\n...OOOO...\nIEKAJCBFLHMGND",
+  "isTest": "true",
+  "isValidator": "false"
+}

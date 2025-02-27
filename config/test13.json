@@ -1,9 +1,9 @@
 {
   "title": {
-    "1": "Owl Mask",
-    "2": "Owl Mask"
+    "1": "Football",
+    "2": "Football"
   },
-  "testIn": "9 10\n.O......O.\nOOO....OOO\nOOOOOOOOOO\nOOOOOOOOOO\nOO.OOOO.OO\nOOOOOOOOOO\n.OOOOOOOO.\n..OOOOOO..\n...OOOO...\nIEKAJCBFLHMGND",
+  "testIn": "14 12\n.....OO.....\n..O..OO.....\n..O.OOO.....\n..OOOOOOO...\n....OOO.O...\n....OO..O...\n...OOOO.....\n...OOOO.....\n...OOOO.....\n..OOOOO.....\n.OOO.OO.....\nOOO...O.....\nO.....OO..OO\n......OOO.OO\nFGHIDMKNJAECL",
   "isTest": "true",
   "isValidator": "false"
 }

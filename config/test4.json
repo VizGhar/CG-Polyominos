@@ -1,9 +1,13 @@
 {
   "title": {
-    "1": "Umbrella",
-    "2": "Umbrella"
+    "1": "All Flips",
+    "2": "All Flips"
   },
-  "testIn": "5 9\n...OOO...\n..O.O.O..\n.OO.O.OO.\nOOOOOOOOO\n....O....\nGFAEH",
+  "testIn": "4 11\nOOO...OO.OO\nOO.OO..O..O\n....O..O.OO\n....OO...O.\nINAL",
   "isTest": "false",
   "isValidator": "true"
 }
+
+
+
+

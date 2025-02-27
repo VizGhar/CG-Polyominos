@@ -1,9 +1,9 @@
 {
   "title": {
-    "1": "Runner",
-    "2": "Runner"
+    "1": "Dino",
+    "2": "Dino"
   },
-  "testIn": "13 10\n....OOO...\n....OOO...\n..O.OOO...\n..O..O....\n..OOOOO...\n....OOOOO.\n....OOOOO.\n...OOOOOO.\n..OOOOOOO.\n..OOO.OO..\n..O....OOO\nOOO....OOO\nOOO......O\nEDNBLFGJHKIMA",
+  "testIn": "12 10\n.......OO.\n......OO.O\n......OOOO\n......OO..\n......OO..\n......OO..\n....OOOO..\n..OOOOOOO.\n.OOOOOOOO.\nOOOOOOOO..\n...OO.OO..\n...OO.OO..\nNBMAHKCFGLI",
   "isTest": "false",
   "isValidator": "true"
 }

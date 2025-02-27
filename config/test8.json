@@ -1,9 +1,9 @@
 {
   "title": {
-    "1": "Dino",
-    "2": "Dino"
+    "1": "Umbrella",
+    "2": "Umbrella"
   },
-  "testIn": "12 10\n.......OO.\n......OO.O\n......OOOO\n......OO..\n......OO..\n......OO..\n....OOOO..\n..OOOOOOO.\n.OOOOOOOO.\nOOOOOOOO..\n...OO.OO..\n...OO.OO..\nNBMAHKCFGLI",
+  "testIn": "5 9\n...OOO...\n..O.O.O..\n.OO.O.OO.\nOOOOOOOOO\n....O....\nGFAEH",
   "isTest": "false",
   "isValidator": "true"
 }
