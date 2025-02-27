@@ -1,9 +1,17 @@
 {
   "title": {
-    "1": "Dino",
-    "2": "Dino"
+    "1": "Rhombus",
+    "2": "Rhombus"
   },
-  "testIn": "12 10\n.......OO.\n......OO.O\n......OOOO\n......OO..\n......OO..\n......OO..\n....OOOO..\n..OOOOOOO.\n.OOOOOOOO.\nOOOOOOOO..\n...OO.OO..\n...OO.OO..\nNBMAHKCFGLI",
+  "testIn": "9 9\n....O....\n...OOO...\n..OOOOO..\n.OOOOOOO.\nOOOOOOOOO\n.OOOOOOO.\n..OOOOO..\n...OOO...\n....O....\nACDGHIJMN",
   "isTest": "false",
   "isValidator": "true"
 }
+
+
+
+
+
+
+
+

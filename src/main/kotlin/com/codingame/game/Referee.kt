@@ -58,7 +58,7 @@ class Referee : AbstractReferee() {
     private lateinit var board: Array<CharArray>
 
     override fun init() {
-        gameManager.firstTurnMaxTime = 2000
+        gameManager.firstTurnMaxTime = 5000
         gameManager.turnMaxTime = 50
         allCharacters = gameManager.testCaseInput.last()
         val (rows, _) = gameManager.testCaseInput.first().split(" ").map { it.toInt() }
